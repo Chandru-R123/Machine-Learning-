@@ -1,0 +1,16 @@
+Enter number of productions: 4
+E=TX
+X=+TX
+X=e
+T=i
+Enter input string: i+i
+Stack   Input   Action
+E$      i+i     E=TX
+TX$     i+i     T=i
+iX$     i+i     Match i
+X$      +i      X=+TX
++TX$    +i      Match +
+TX$     i       T=i
+iX$     i       Match i
+X$              (empty)
+$               String Accepted

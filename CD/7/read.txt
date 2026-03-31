@@ -1,0 +1,26 @@
+Enter number of productions: 2
+Enter productions (use # for epsilon):
+E->E+T|T
+T->i
+
+LR(0) PARSING TABLE:
+State   +       i       $
+0       -       S3      -
+1       S4      -       ACC
+2       R(E->T) R(E->T) R(E->T)
+3       R(T->i) R(T->i) R(T->i)
+4       -       S3      -
+5       R(E->E+T)       R(E->E+T)       R(E->E+T)
+
+Enter input string (end with $): i+i$
+
+STACK   INPUT   ACTION
+[0 ]    i+i$    S3
+[0 3 ]  +i$     R(T->i)
+[0 2 ]  +i$     R(E->T)
+[0 1 ]  +i$     S4
+[0 1 4 ]        i$      S3
+[0 1 4 3 ]      $       R(T->i)
+[0 1 4 5 ]      $       R(E->E+T)
+[0 1 ]  $       ACC
+ACCEPT

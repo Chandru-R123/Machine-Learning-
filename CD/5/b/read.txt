@@ -1,0 +1,11 @@
+bison -d var.y
+flex var.l
+gcc var.tab.c lex.yy.c -o varprog
+./varprog
+
+
+
+
+Enter Variable:
+abc123
+Valid Variable

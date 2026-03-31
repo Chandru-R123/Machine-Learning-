@@ -1,0 +1,12 @@
+
+flex lex.l
+gcc lex.yy.c -o lexprog
+./lexprog
+
+Enter:
+int a = 10;
+int : Keyword
+a : Identifier
+= : Operator
+10 : Constant
+; : Special Symbol

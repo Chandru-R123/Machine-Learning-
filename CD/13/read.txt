@@ -1,0 +1,13 @@
+=== THREE-ADDRESS CODE TO 8086 ASSEMBLY ===
+Enter number of TAC statements (max 10): 3
+Enter TAC statement 1: t1 = 5
+Enter TAC statement 2: t2 = 10
+Enter TAC statement 3: t3 = t1 + t2
+
+Generated 8086 Assembly:
+MOV t1, 5
+MOV 2, 10
+MOV 3, t1
+
+Process returned 0 (0x0)   execution time : 47.018 s
+Press any key to continue.

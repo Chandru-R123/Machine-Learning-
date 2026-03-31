@@ -1,0 +1,18 @@
+=== STACK AND HEAP MEMORY DEMONSTRATION ===
+
+STACK MEMORY EXAMPLE
+Enter a value for stackVar: 10
+Enter 3 values for stackArr: 1 2 3
+
+StackVar = 10
+stackArr = 1 2 3
+
+HEAP MEMORY EXAMPLE
+Enter a value for heapVar: 50
+Enter size of heapArr: 4
+Enter 4 values for heapArr: 5 10 15 20
+
+HeapVar = 50
+heapArr = 5 10 15 20
+
+Program completed successfully!

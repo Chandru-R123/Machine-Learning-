@@ -1,0 +1,10 @@
+=== CODE OPTIMIZATION ===
+Enter two constants a and b for constant folding (a+b): 3 6
+Constant Folding: 3 + 6 = 9
+Enter loop count for strength reduction: 5
+Strength Reduction (i*2 replaced with i+i), sum = 20
+Enter value for x (for z = x*1 + 0 simplified): 0
+Algebraic Transformation: z = 0
+
+Process returned 0 (0x0)   execution time : 105.483 s
+Press any key to continue.
