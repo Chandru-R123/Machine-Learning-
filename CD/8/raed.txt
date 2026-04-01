@@ -1,0 +1,15 @@
+Chandru@DESKTOP-78O72AC MINGW64 ~
+$ cd /c/Users/Chandru/Onedrive/Desktop/CD/9
+
+Chandru@DESKTOP-78O72AC MINGW64 /c/Users/Chandru/Onedrive/Desktop/CD/9
+$ bison -d parser.y
+
+Chandru@DESKTOP-78O72AC MINGW64 /c/Users/Chandru/Onedrive/Desktop/CD/9
+$ flex lexer.l
+
+Chandru@DESKTOP-78O72AC MINGW64 /c/Users/Chandru/Onedrive/Desktop/CD/9
+$ gcc lex.yy.c parser.tab.c -o parser
+
+Chandru@DESKTOP-78O72AC MINGW64 /c/Users/Chandru/Onedrive/Desktop/CD/9
+$ ./parser
+enter expression: a*b+c
