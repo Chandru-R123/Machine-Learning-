@@ -1,67 +1,78 @@
 %{
-#include <stdio.h>
-#include <stdlib.h>
-#include "parser.h"
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+typedef struct node
+{
+    char val[10];
+    struct node *left;
+    struct node *right;
+}node;
+
+node* newnode(char *v,node *l,node *r)
+{
+    node *t=(node*)malloc(sizeof(node));
+    strcpy(t->val,v);
+    t->left=l;
+    t->right=r;
+    return t;
+}
+
+void preorder(node *t)
+{
+    if(t!=NULL)
+    {
+        printf("%s ",t->val);
+        preorder(t->left);
+        preorder(t->right);
+    }
+}
+
+node *root;
+
+void yyerror(char *s);
+int yylex();
 %}
 
-%union {
-    ASTNode* node;
+%union{
+    struct node *node;
 }
 
-%token <node> ID NUM
-%type <node> E T F
+%token ID
+%type <node> expr term factor
 
 %%
 
-stmt : ID '=' E ';'
-      {
-        printf("%c = ", $1->value);
-        printAST($3);
-        printf("\n");
-      }
-    ;
+expr : expr '+' term { $$ = newnode("+",$1,$3); root=$$; }
+     | expr '-' term { $$ = newnode("-",$1,$3); root=$$; }
+     | term { $$ = $1; root=$$; }
+     ;
 
-E : E '+' T { $$ = newNode('E','+',$1,$3,0); }
-  | E '-' T { $$ = newNode('E','-',$1,$3,0); }
-  | T       { $$ = $1; }
-  ;
+term : term '*' factor { $$ = newnode("*",$1,$3); }
+     | term '/' factor { $$ = newnode("/",$1,$3); }
+     | factor { $$ = $1; }
+     ;
 
-T : T '*' F { $$ = newNode('T','*',$1,$3,0); }
-  | T '/' F { $$ = newNode('T','/',$1,$3,0); }
-  | F       { $$ = $1; }
-  ;
-
-F : '(' E ')' { $$ = $2; }
-  | ID       { $$ = $1; }
-  | NUM      { $$ = $1; }
-  ;
+factor : '(' expr ')' { $$ = $2; }
+       | ID { $$ = newnode("id",NULL,NULL); }
+       ;
 
 %%
 
-ASTNode* newNode(char type, char op, ASTNode* left, ASTNode* right, char value) {
-    ASTNode* node = (ASTNode*)malloc(sizeof(ASTNode));
-    node->type = type;
-    node->op = op;
-    node->left = left;
-    node->right = right;
-    node->value = value;
-    return node;
+void yyerror(char *s)
+{
+    printf("Invalid Expression\n");
 }
 
-void printAST(ASTNode* node) {
-    if (!node) return;
-    if(node->left) printAST(node->left);
-    if(node->right) printAST(node->right);
-    if(node->op) printf("%c ", node->op);
-    if(node->value) printf("%c ", node->value);
-}
-
-void yyerror(const char *s) {
-    printf("Error: %s\n", s);
-}
-
-int main() {
-    printf("Enter statement:\n");
+int main()
+{
+    printf("Enter Expression:\n");
     yyparse();
+
+    printf("\nAbstract Syntax Tree (Prefix):\n");
+    preorder(root);
+    printf("\n");
+
     return 0;
 }
