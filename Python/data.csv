@@ -1,0 +1,5 @@
+Outlook,Temp,Humidity,Wind,Target
+sunny,warm,normal,strong,yes
+sunny,warm,high,strong,yes
+rainy,cold,high,strong,no
+sunny,warm,high,weak,yes
